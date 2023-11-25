@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+import sklearn.preprocessing as p
+import scipy.stats as s
+
+d={'co1':[1,2,3,4],'co2':[2,3,4,5],'co3':[3,4,5,6]}
+df=pd.DataFrame(d)
+
+d=p.MinMaxScaler(feature_range=(0,1))
+ds=d.fit_transform(df)
+print(ds.round(2))
+
+
+
+db=p.Binarizer(threshold=1).transform(df)
+db
+
+x=np.array([[1.,-1.,2.],[2.,0.,0.],[0.,1.,-1.]])
+print(x)
+print("initial mean",s.tmean(x).round(2))
+print("initial standard dev",round(x.std(),2))
+
+xs=p.scale(x)
+xs.mean(axis=0)
+xs.std(axis=0)
+
+print(xs.round(2))
+print("scaled mean",s.tmean(xs).round(2))
+print("scaled std dev",round(xs.std(),2))
+
+
+import numpy as np
+a=np.arange(8).reshape((4,2))
+print("original flattended array:")
+print(a)
+
+
+
+
+
+
+
+from scipy.spatial import distance
+p1=[1,2,3]
+p2=[5,3,2]
+m=distance.cityblock(p1,p2)
+print('Manhattan Distance is',m)
